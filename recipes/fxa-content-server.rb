@@ -22,10 +22,8 @@ package 'libgmp-dev'
 
 include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
 
-
 nodejs_npm 'grunt-cli'
 nodejs_npm 'phantomjs'
-
 
 nodejs_npm 'fxa-content-server' do
   url 'github mozilla/fxa-content-server.git'

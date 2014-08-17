@@ -25,4 +25,3 @@ nodejs_npm 'fxa-auth-server' do
   version 'v0.19.0'
   options ['--production']
 end
-

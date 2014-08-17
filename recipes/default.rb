@@ -19,7 +19,7 @@
 
 include_recipe 'git'
 include_recipe 'nodejs'
-include_recipe "nodejs::npm" 
+include_recipe 'nodejs::npm'
 
-include_recipe 'mozilla-firefox-accounts::fxa-auth-server' 
-include_recipe 'mozilla-firefox-accounts::fxa-content-server' 
+include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
+include_recipe 'mozilla-firefox-accounts::fxa-content-server'
