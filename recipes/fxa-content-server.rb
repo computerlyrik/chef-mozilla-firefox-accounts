@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: mozilla-firefox-accounts
-# Recipe:: fxa-auth-server
+# Recipe:: fxa-content-server
 #
 # Copyright 2014, computerlyrik, Christian Fischer
 #
