@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: mozilla-firefox-accounts
-# Recipe:: default
+# Recipe:: fxa-auth-server
 #
 # Copyright 2014, computerlyrik, Christian Fischer
 #
@@ -17,9 +17,18 @@
 # limitations under the License.
 #
 
-include_recipe 'git'
-include_recipe 'nodejs'
-include_recipe "nodejs::npm" 
+package 'libgmp'
+package 'libgmp-dev'
 
-include_recipe 'mozilla-firefox-accounts::fxa-auth-server' 
-include_recipe 'mozilla-firefox-accounts::fxa-content-server' 
+include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
+
+
+nodejs_npm 'grunt-cli'
+nodejs_npm 'phantomjs'
+
+
+nodejs_npm 'fxa-content-server' do
+  url 'github mozilla/fxa-content-server.git'
+  version 'v0.19.0'
+  options ['--production']
+end
