@@ -17,9 +17,6 @@
 # limitations under the License.
 #
 
-package 'libgmp'
-package 'libgmp-dev'
-
 include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
 
 nodejs_npm 'grunt-cli'

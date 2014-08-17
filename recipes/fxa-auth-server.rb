@@ -17,8 +17,7 @@
 # limitations under the License.
 #
 
-package 'libgmp'
-package 'libgmp-dev'
+
 
 nodejs_npm 'fxa-auth-server' do
   url 'github mozilla/fxa-auth-server.git'

@@ -21,5 +21,8 @@ include_recipe 'git'
 include_recipe 'nodejs'
 include_recipe 'nodejs::npm'
 
+package 'libgmp10'
+package 'libgmp10-dev'
+
 include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
 include_recipe 'mozilla-firefox-accounts::fxa-content-server'
