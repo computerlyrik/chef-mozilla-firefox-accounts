@@ -27,3 +27,12 @@ nodejs_npm 'fxa-content-server' do
   version 'v0.19.0'
   options ['--production']
 end
+
+include_recipe 'application_nodejs'
+
+application 'fxa-content-server' do
+  path  '/fxa-content-server'
+  repository 'github mozilla/fxa-content-server.git'
+  revision 'v0.19.0'
+  nodejs
+end

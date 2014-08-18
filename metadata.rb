@@ -10,3 +10,4 @@ supports 'ubuntu'
 
 depends 'git'
 depends 'nodejs'
+depends 'application_nodejs'
