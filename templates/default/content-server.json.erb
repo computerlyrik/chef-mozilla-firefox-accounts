@@ -1,0 +1,27 @@
+{
+  "public_url": "https://<%= node['mozilla-firefox-accounts']['server_name'] %>",
+  "fxaccount_url": "https://<%= node['mozilla-firefox-accounts']['server_name'] %>",
+  "api_proxy": {
+    "enabled": true
+  },
+  "oauth_client_id": "98e6508e88680e1a",
+  "oauth_url": "http://127.0.0.1:9010",
+  "profile_url": "http://127.0.0.1:1111",
+  "profile_images_url": "http://127.0.0.1:1112",
+  "client_sessions": {
+    "cookie_name": "session",
+    "secret": "thisis8735ara545nd4omstring",
+    "duration": 86400000
+  },
+  "env": "production",
+  "use_https": false,
+  "static_max_age" : 0,
+  "i18n": {
+    "supportedLanguages": ["en","de"]
+  },
+  "route_log_format": "dev_fxa",
+  "static_directory": "app",
+  "metrics": {
+    "sample_rate": 0
+  }
+}

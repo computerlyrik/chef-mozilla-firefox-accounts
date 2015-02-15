@@ -6,10 +6,20 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu-12.04
-
+  - name: ubuntu-14.04
+  - name: debian-7.7
 suites:
-  - name: default
+  - name: auth-server
     run_list:
-      - recipe[mozilla-firefox-accounts::default]
+      - recipe[mozilla-firefox-accounts::fxa-auth-server]
     attributes:
+      mysql:
+        server_root_password: test
+
+  - name: content-server
+    run_list:
+      - recipe[mozilla-firefox-accounts::fxa-content-server]
+    attributes:
+      mysql:
+        server_root_password: test
+

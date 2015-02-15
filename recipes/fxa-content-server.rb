@@ -17,21 +17,30 @@
 # limitations under the License.
 #
 
-include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
+#include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
+
+include_recipe 'mozilla-firefox-accounts'
 
 nodejs_npm 'grunt-cli'
 nodejs_npm 'phantomjs'
 
 nodejs_npm 'fxa-content-server' do
   url 'github mozilla/fxa-content-server.git'
-  version 'v0.19.0'
+  version node['mozilla-firefox-accounts']['content-server']['version']
+  path node['mozilla-firefox-accounts']['content-server']['path']
   options ['--production']
 end
+
+
+#template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/dev.json" do
+#   source 'content-server.json.erb'
+#end
+
 
 include_recipe 'application_nodejs'
 
 application 'fxa-content-server' do
-  path  '/fxa-content-server'
+  path node['mozilla-firefox-accounts']['auth-db-server']['path']
   repository 'github mozilla/fxa-content-server.git'
   revision 'v0.19.0'
   nodejs

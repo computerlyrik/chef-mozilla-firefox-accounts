@@ -11,3 +11,8 @@ supports 'ubuntu'
 depends 'git'
 depends 'nodejs'
 depends 'application_nodejs'
+
+depends 'database'
+
+depends 'mysql', '~> 6.0'
+depends 'mysql2_chef_gem'

@@ -21,8 +21,10 @@ include_recipe 'git'
 include_recipe 'nodejs'
 include_recipe 'nodejs::npm'
 
-package 'libgmp10'
-package 'libgmp10-dev'
 
-include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
-include_recipe 'mozilla-firefox-accounts::fxa-content-server'
+user node['mozilla-firefox-accounts']['user'] do
+  system true
+  shell "/bin/false"
+end
+
+
