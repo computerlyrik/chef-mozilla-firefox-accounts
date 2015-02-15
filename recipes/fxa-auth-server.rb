@@ -2,7 +2,7 @@
 # Cookbook Name:: mozilla-firefox-accounts
 # Recipe:: fxa-auth-server
 #
-# Copyright 2014, computerlyrik, Christian Fischer
+# Copyright 2014, 2015 computerlyrik, Christian Fischer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,10 +24,15 @@ package 'libgmp10-dev'
 
 
 #AUTH-DB-SERVER
+directory node['mozilla-firefox-accounts']['auth-db-server']['path'] do
+  recursive true
+end
+
 nodejs_npm 'fxa-auth-db-server' do
-  url 'https://github.com/mozilla/fxa-auth-db-server.git'
-  options ['--production']
+  url 'github mozilla/fxa-auth-db-server'
+  version node['mozilla-firefox-accounts']['auth-db-server']['version']
   path node['mozilla-firefox-accounts']['auth-db-server']['path']
+  options ['--production']
 end
 
 include_recipe 'mozilla-firefox-accounts::database'
@@ -46,8 +51,13 @@ include_recipe 'mozilla-firefox-accounts::database'
 
 
 #AUTH-SERVER
+directory node['mozilla-firefox-accounts']['auth-server']['path'] do
+  recursive true
+end
+
 nodejs_npm 'fxa-auth-server' do
   url 'github mozilla/fxa-auth-server.git'
+  version node['mozilla-firefox-accounts']['auth-server']['version']
   options ['--production']
   path node['mozilla-firefox-accounts']['auth-server']['path']
 end

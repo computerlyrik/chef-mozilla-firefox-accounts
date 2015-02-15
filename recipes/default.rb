@@ -2,7 +2,7 @@
 # Cookbook Name:: mozilla-firefox-accounts
 # Recipe:: default
 #
-# Copyright 2014, computerlyrik, Christian Fischer
+# Copyright 2014, 2015 computerlyrik, Christian Fischer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 
 include_recipe 'git'
 include_recipe 'nodejs'
-include_recipe 'nodejs::npm'
 
 
 user node['mozilla-firefox-accounts']['user'] do

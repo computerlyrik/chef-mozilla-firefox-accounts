@@ -2,7 +2,7 @@
 # Cookbook Name:: mozilla-firefox-accounts
 # Recipe:: fxa-content-server
 #
-# Copyright 2014, computerlyrik, Christian Fischer
+# Copyright 2014, 2015 computerlyrik, Christian Fischer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,6 +24,10 @@ include_recipe 'mozilla-firefox-accounts'
 nodejs_npm 'grunt-cli'
 nodejs_npm 'phantomjs'
 
+directory node['mozilla-firefox-accounts']['content-server']['path'] do
+  recursive true
+end
+
 nodejs_npm 'fxa-content-server' do
   url 'github mozilla/fxa-content-server.git'
   version node['mozilla-firefox-accounts']['content-server']['version']
@@ -37,7 +41,7 @@ end
 #end
 
 
-include_recipe 'application_nodejs'
+#include_recipe 'application_nodejs'
 
 application 'fxa-content-server' do
   path node['mozilla-firefox-accounts']['auth-db-server']['path']
