@@ -6,6 +6,8 @@ description      'Installs/Configures mozilla-firefox-accounts'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 
+source_url "https://github.com/computerlyrik/chef-mozilla-firefox-accounts.git"
+
 supports 'ubuntu'
 
 depends 'git'

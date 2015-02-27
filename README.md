@@ -8,6 +8,7 @@ Setz up
 
 
 Derived from https://thomas-leister.de/internet/ubuntu-firefox-sync-1-5-server-installieren/
+and from https://known.phyks.me/2015/self-hosting-firefox-sync-15
 
 Requirements
 ------------

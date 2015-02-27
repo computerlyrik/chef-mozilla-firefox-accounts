@@ -29,7 +29,7 @@ suites:
         database:
           password: test
 
-  - name: complete
+  - name: default
     run_list:
       - recipe[mozilla-firefox-accounts::fxa-auth-server]
       - recipe[mozilla-firefox-accounts::fxa-content-server]

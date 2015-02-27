@@ -31,6 +31,7 @@ end
 git node['mozilla-firefox-accounts']['content-server']['path']  do
   repository 'https://github.com/mozilla/fxa-content-server.git'
   revision node['mozilla-firefox-accounts']['content-server']['version']
+  user node['mozilla-firefox-accounts']['user']
 end
 
 nodejs_npm 'fxa-content-server' do
