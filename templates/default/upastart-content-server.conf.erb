@@ -1,0 +1,16 @@
+# description "Start the fxa-content-server"
+
+start on runlevel [2345]
+stop on runlevel [^2345]
+
+console log
+chdir /home/fxcloud/fxa-content-server
+setuid fxcloud
+setgid fxcloud
+
+env HOME=/home/fxcloud
+respawn
+respawn limit 20 5
+
+exec npm start
+

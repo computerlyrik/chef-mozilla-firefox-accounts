@@ -24,7 +24,7 @@ end
 
 # Enable secure password generation
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
-node.set_unless['gitlab']['database']['password'] = secure_password
+node.set_unless['mozilla-firefox-accounts']['database']['password'] = secure_password
 ruby_block 'save node data' do
   block do
     node.save
@@ -48,7 +48,7 @@ database_password = node['mozilla-firefox-accounts']['database']['password']
 
 
 database_connection = {
-  host: 'localhost',
+  host: '127.0.0.1',
   username: 'root',
   password: node['mysql']['server_root_password']
 }

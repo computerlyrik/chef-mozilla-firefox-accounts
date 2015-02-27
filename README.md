@@ -1,9 +1,13 @@
 mozilla-firefox-accounts Cookbook
 =================================
-TODO: Enter the cookbook description here.
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+Setz up
+- fxa-auth-db-server
+- fxa-auth-server
+- fxa-content-server
+
+
+Derived from https://thomas-leister.de/internet/ubuntu-firefox-sync-1-5-server-installieren/
 
 Requirements
 ------------

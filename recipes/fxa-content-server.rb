@@ -28,10 +28,13 @@ directory node['mozilla-firefox-accounts']['content-server']['path'] do
   recursive true
 end
 
+git node['mozilla-firefox-accounts']['content-server']['path']  do
+  repository 'https://github.com/mozilla/fxa-content-server.git'
+  revision node['mozilla-firefox-accounts']['content-server']['version']
+end
+
 nodejs_npm 'fxa-content-server' do
-  url 'github mozilla/fxa-content-server.git'
-  version node['mozilla-firefox-accounts']['content-server']['version']
-  path node['mozilla-firefox-accounts']['content-server']['path']
+  url node['mozilla-firefox-accounts']['content-server']['path']
   options ['--production']
 end
 
@@ -42,10 +45,10 @@ end
 
 
 #include_recipe 'application_nodejs'
-
-application 'fxa-content-server' do
-  path node['mozilla-firefox-accounts']['auth-db-server']['path']
-  repository 'github mozilla/fxa-content-server.git'
-  revision 'v0.19.0'
-  nodejs
-end
+#
+#application 'fxa-content-server' do
+#  path node['mozilla-firefox-accounts']['auth-db-server']['path']
+#  repository 'github mozilla/fxa-content-server.git'
+#  revision 'v0.19.0'
+#  nodejs
+#end
