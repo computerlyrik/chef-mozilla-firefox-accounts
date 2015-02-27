@@ -38,6 +38,13 @@ nodejs_npm 'fxa-content-server' do
   options ['--production']
 end
 
+template '/etc/init/fxa-content-server.conf' do
+  source 'upstart-content-server.conf.erb'
+end
+
+service 'fxa-content-server' do
+  action [:start, :enable]
+end 
 
 #template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/dev.json" do
 #   source 'content-server.json.erb'

@@ -29,3 +29,14 @@ suites:
         database:
           password: test
 
+  - name: complete
+    run_list:
+      - recipe[mozilla-firefox-accounts::fxa-auth-server]
+      - recipe[mozilla-firefox-accounts::fxa-content-server]
+    attributes:
+      mysql:
+        server_root_password: test
+      mozilla-firefox-accounts:
+        database:
+          password: test
+

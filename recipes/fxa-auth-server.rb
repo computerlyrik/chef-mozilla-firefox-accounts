@@ -19,8 +19,6 @@
 
 include_recipe 'mozilla-firefox-accounts'
 
-
-
 include_recipe 'mozilla-firefox-accounts::database'
 
 #AUTH-DB-SERVER
@@ -37,7 +35,6 @@ nodejs_npm 'fxa-auth-db-server' do
   url node['mozilla-firefox-accounts']['auth-db-server']['path']
   options ['--production']
 end
-
 
 #AUTH-DB-SERVER MYSQL
 directory node['mozilla-firefox-accounts']['auth-db-mysql']['path'] do
@@ -75,7 +72,13 @@ execute 'fxa-auth-db-migration' do
   action :nothing
 end
 
+template '/etc/init/fxa-auth-db-server.conf' do
+  source 'upstart-auth-db-server.conf.erb'
+end
 
+service 'fxa-auth-db-server' do
+  action [:start, :enable]
+end 
 
 
 #AUTH-SERVER
@@ -95,6 +98,14 @@ nodejs_npm 'fxa-auth-server' do
   url node['mozilla-firefox-accounts']['auth-server']['path']
   options ['--production']
 end
+
+template '/etc/init/fxa-auth-server.conf' do
+  source 'upstart-auth-server.conf.erb'
+end
+
+service 'fxa-auth-server' do
+  action [:start, :enable]
+end 
 
 #template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/dev.json" do
 #   source 'auth-db-server.json.erb'

@@ -4,7 +4,7 @@ start on runlevel [2345]
 stop on runlevel [^2345]
 
 console log
-chdir /home/fxcloud/fxa-auth-server
+chdir <%= node['mozilla-firefox-accounts']['auth-server']['path'] %>
 setuid fxcloud
 setgid fxcloud
 
