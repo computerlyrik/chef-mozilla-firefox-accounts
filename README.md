@@ -2,7 +2,7 @@ mozilla-firefox-accounts Cookbook
 =================================
 
 Setz up
-- fxa-auth-db-server
+- fxa-auth-db-server (mysql)
 - fxa-auth-server
 - fxa-content-server
 
@@ -12,11 +12,10 @@ and from https://known.phyks.me/2015/self-hosting-firefox-sync-15
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
 #### packages
 - `certificate` - manages certificate via data_bag
+- `nodejs`
 
 Attributes
 ----------
@@ -65,19 +64,9 @@ Attributes
 Usage
 -----
 #### mozilla-firefox-accounts::default
-TODO: Write usage instructions for each cookbook.
 
-e.g.
-Just include `mozilla-firefox-accounts` in your node's `run_list`:
+Just include `mozilla-firefox-accounts::fxa-auth-server` and/or `mozilla-firefox-accounts::fxa-content-server` in your node's `run_list`:
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[mozilla-firefox-accounts]"
-  ]
-}
-```
 TODO
 ------------
 
