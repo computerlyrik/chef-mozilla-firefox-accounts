@@ -42,6 +42,9 @@ end
 
 template "#{node['mozilla-firefox-accounts']['content-server']['path']}/server/config/local.json" do
    source 'content-server.json.erb'
+  variables(
+      use_htttps: node['mozilla-firefox-sync']['content-server']['use_https']
+  )
   notifies :restart, 'service[fxa-content-server]'
 end
 

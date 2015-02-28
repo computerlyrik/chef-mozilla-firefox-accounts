@@ -16,5 +16,6 @@ default['mozilla-firefox-accounts']['auth-server']['path'] = '/srv/fxa/auth-serv
 default['mozilla-firefox-accounts']['content-server']['version'] = 'v0.31.0'
 default['mozilla-firefox-accounts']['content-server']['path'] = '/srv/fxa/content-server'
 default['mozilla-firefox-accounts']['content-server']['secret'] = nil
+default['mozilla-firefox-sync']['content-server']['use_https'] = false
 
 
