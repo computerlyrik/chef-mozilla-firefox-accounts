@@ -64,7 +64,7 @@ mysql_database_user database_user do
   connection database_connection
   password database_password
   database_name database
-  privileges ['SELECT', 'LOCK TABLES', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'INDEX', 'ALTER']
+#  privileges ['SELECT', 'LOCK TABLES', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'INDEX', 'ALTER']
   action [:create, :grant]
 end
 

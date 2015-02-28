@@ -38,11 +38,12 @@ end
 
 nodejs_npm 'fxa-auth-server' do
   url node['mozilla-firefox-accounts']['auth-server']['path']
-  options ['--production']
+  path node['mozilla-firefox-accounts']['auth-server']['path']
 end
 
 template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/prod.json" do
    source 'auth-server.json.erb'
+  notifies :restart, 'service[fxa-auth-server]'
 end
 
 template '/etc/init/fxa-auth-server.conf' do

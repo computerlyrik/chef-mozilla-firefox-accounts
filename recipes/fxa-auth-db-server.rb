@@ -30,9 +30,6 @@ git node['mozilla-firefox-accounts']['auth-db-server']['path']  do
   repository node['mozilla-firefox-accounts']['auth-db-server']['repository']
   revision node['mozilla-firefox-accounts']['auth-db-server']['version']
   user node['mozilla-firefox-accounts']['user']
-  notifies :create, 'template[fxa-auth-db]', :immediately
-  notifies :install, 'nodejs_npm[fxa-auth-db-server]', :immediately
-  notifies :run, 'execute[fxa-auth-db-migration]', :immediately
 end
 
 template 'fxa-auth-db' do
@@ -44,18 +41,12 @@ template 'fxa-auth-db' do
   )
   path "#{node['mozilla-firefox-accounts']['auth-db-server']['path']}/config/prod.json"
   source 'auth-db-server.json.erb'
+  notifies :restart, 'service[fxa-auth-db-server]'
 end
 
 nodejs_npm 'fxa-auth-db-server' do
   url node['mozilla-firefox-accounts']['auth-db-server']['path']
-  options ['--production']
-  action :nothing
-end
-
-execute 'fxa-auth-db-migration' do
-  cwd node['mozilla-firefox-accounts']['auth-db-server']['path']
-  command 'node bin/db_patcher.js'
-  action :nothing
+  path node['mozilla-firefox-accounts']['auth-db-server']['path']
 end
 
 template '/etc/init/fxa-auth-db-server.conf' do

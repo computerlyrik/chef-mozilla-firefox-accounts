@@ -37,7 +37,12 @@ end
 
 nodejs_npm 'fxa-content-server' do
   url node['mozilla-firefox-accounts']['content-server']['path']
-  options ['--production']
+  path node['mozilla-firefox-accounts']['content-server']['path']
+end
+
+template "#{node['mozilla-firefox-accounts']['content-server']['path']}/server/config/local.json" do
+   source 'content-server.json.erb'
+  notifies :restart, 'service[fxa-content-server]'
 end
 
 template '/etc/init/fxa-content-server.conf' do
@@ -48,9 +53,7 @@ service 'fxa-content-server' do
   action [:start, :enable]
 end 
 
-#template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/dev.json" do
-#   source 'content-server.json.erb'
-#end
+
 
 
 #include_recipe 'application_nodejs'
