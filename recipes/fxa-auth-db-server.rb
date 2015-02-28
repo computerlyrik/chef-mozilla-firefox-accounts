@@ -30,6 +30,12 @@ git node['mozilla-firefox-accounts']['auth-db-server']['path']  do
   repository node['mozilla-firefox-accounts']['auth-db-server']['repository']
   revision node['mozilla-firefox-accounts']['auth-db-server']['version']
   user node['mozilla-firefox-accounts']['user']
+  notifies :run, 'execute[npm install]', :immediately
+end
+
+execute 'npm install' do
+  cwd node['mozilla-firefox-accounts']['auth-db-server']['path']
+  action :nothing
 end
 
 template 'fxa-auth-db' do
