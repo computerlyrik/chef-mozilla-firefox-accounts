@@ -20,10 +20,7 @@
 include_recipe 'git'
 include_recipe 'nodejs'
 
-
 user node['mozilla-firefox-accounts']['user'] do
   system true
-  shell "/bin/false"
+  shell '/bin/false'
 end
-
-

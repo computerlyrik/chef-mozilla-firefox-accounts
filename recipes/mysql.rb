@@ -40,12 +40,10 @@ mysql_service 'default' do
   action [:create, :start]
 end
 
-
 # Helper variables
 database = node['mozilla-firefox-accounts']['database']['database']
 database_user = node['mozilla-firefox-accounts']['database']['user']
 database_password = node['mozilla-firefox-accounts']['database']['password']
-
 
 database_connection = {
   host: '127.0.0.1',
@@ -64,7 +62,6 @@ mysql_database_user database_user do
   connection database_connection
   password database_password
   database_name database
-#  privileges ['SELECT', 'LOCK TABLES', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'INDEX', 'ALTER']
+  #  privileges ['SELECT', 'LOCK TABLES', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'INDEX', 'ALTER']
   action [:create, :grant]
 end
-

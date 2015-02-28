@@ -20,7 +20,7 @@
 include_recipe 'mozilla-firefox-accounts'
 include_recipe 'mozilla-firefox-accounts::mysql'
 
-#AUTH-DB-SERVER
+# AUTH-DB-SERVER
 directory node['mozilla-firefox-accounts']['auth-db-server']['path'] do
   recursive true
   user node['mozilla-firefox-accounts']['user']
@@ -61,5 +61,4 @@ end
 
 service 'fxa-auth-db-server' do
   action [:start, :enable]
-end 
-
+end

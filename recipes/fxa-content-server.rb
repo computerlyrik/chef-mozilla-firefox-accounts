@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-#include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
+# include_recipe 'mozilla-firefox-accounts::fxa-auth-server'
 
 include_recipe 'mozilla-firefox-accounts'
 
@@ -41,7 +41,7 @@ nodejs_npm 'fxa-content-server' do
 end
 
 template "#{node['mozilla-firefox-accounts']['content-server']['path']}/server/config/local.json" do
-   source 'content-server.json.erb'
+  source 'content-server.json.erb'
   variables(
       use_htttps: node['mozilla-firefox-sync']['content-server']['use_https']
   )
@@ -54,16 +54,13 @@ end
 
 service 'fxa-content-server' do
   action [:start, :enable]
-end 
+end
 
-
-
-
-#include_recipe 'application_nodejs'
+# include_recipe 'application_nodejs'
 #
-#application 'fxa-content-server' do
+# application 'fxa-content-server' do
 #  path node['mozilla-firefox-accounts']['auth-db-server']['path']
 #  repository 'github mozilla/fxa-content-server.git'
 #  revision 'v0.19.0'
 #  nodejs
-#end
+# end

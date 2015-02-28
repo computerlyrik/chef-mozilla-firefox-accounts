@@ -21,7 +21,7 @@ include_recipe 'mozilla-firefox-accounts'
 
 include_recipe 'mozilla-firefox-accounts::fxa-auth-db-server'
 
-#AUTH-SERVER
+# AUTH-SERVER
 package 'libgmp10'
 package 'libgmp10-dev'
 
@@ -42,7 +42,7 @@ nodejs_npm 'fxa-auth-server' do
 end
 
 template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/prod.json" do
-   source 'auth-server.json.erb'
+  source 'auth-server.json.erb'
   notifies :restart, 'service[fxa-auth-server]'
 end
 
@@ -52,5 +52,4 @@ end
 
 service 'fxa-auth-server' do
   action [:start, :enable]
-end 
-
+end
