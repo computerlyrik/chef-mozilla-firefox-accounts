@@ -49,7 +49,10 @@ template "#{node['mozilla-firefox-accounts']['content-server']['path']}/server/c
 end
 
 template '/etc/init/fxa-content-server.conf' do
-  source 'upstart-content-server.conf.erb'
+  source 'upstart.conf.erb'
+  variables(
+      program_path: node['mozilla-firefox-accounts']['content-server']['path']
+  )
 end
 
 service 'fxa-content-server' do

@@ -56,7 +56,10 @@ nodejs_npm 'fxa-auth-db-server' do
 end
 
 template '/etc/init/fxa-auth-db-server.conf' do
-  source 'upstart-auth-db-server.conf.erb'
+  source 'upstart.conf.erb'
+  variables(
+      program_path: node['mozilla-firefox-accounts']['auth-db-server']['path']
+  )
 end
 
 service 'fxa-auth-db-server' do

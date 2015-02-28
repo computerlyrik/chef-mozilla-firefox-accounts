@@ -47,7 +47,10 @@ template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/prod
 end
 
 template '/etc/init/fxa-auth-server.conf' do
-  source 'upstart-auth-server.conf.erb'
+  source 'upstart.conf.erb'
+  variables(
+      program_path: node['mozilla-firefox-accounts']['auth-server']['path']
+  )
 end
 
 service 'fxa-auth-server' do
