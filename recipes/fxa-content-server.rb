@@ -26,6 +26,7 @@ nodejs_npm 'phantomjs'
 
 directory node['mozilla-firefox-accounts']['content-server']['path'] do
   recursive true
+  user node['mozilla-firefox-accounts']['user']
 end
 
 git node['mozilla-firefox-accounts']['content-server']['path']  do

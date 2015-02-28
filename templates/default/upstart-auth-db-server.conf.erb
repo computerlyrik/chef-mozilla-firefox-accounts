@@ -8,7 +8,7 @@ chdir <%= node['mozilla-firefox-accounts']['auth-db-mysql']['path'] %>
 setuid fxcloud
 setgid fxcloud
 
-env HOME=/home/fxcloud
+env NODE_ENV=prod,
 respawn
 respawn limit 20 5
 

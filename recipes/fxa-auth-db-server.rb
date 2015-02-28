@@ -20,34 +20,18 @@
 include_recipe 'mozilla-firefox-accounts'
 include_recipe 'mozilla-firefox-accounts::mysql'
 
-
 #AUTH-DB-SERVER
 directory node['mozilla-firefox-accounts']['auth-db-server']['path'] do
   recursive true
+  user node['mozilla-firefox-accounts']['user']
 end
 
 git node['mozilla-firefox-accounts']['auth-db-server']['path']  do
-  repository 'https://github.com/mozilla/fxa-auth-db-server.git'
+  repository node['mozilla-firefox-accounts']['auth-db-server']['repository']
   revision node['mozilla-firefox-accounts']['auth-db-server']['version']
   user node['mozilla-firefox-accounts']['user']
-end
-
-nodejs_npm 'fxa-auth-db-server' do
-  url node['mozilla-firefox-accounts']['auth-db-server']['path']
-  options ['--production']
-end
-
-#AUTH-DB-SERVER MYSQL
-directory node['mozilla-firefox-accounts']['auth-db-mysql']['path'] do
-  recursive true
-end
-
-git node['mozilla-firefox-accounts']['auth-db-mysql']['path']  do
-  repository 'https://github.com/mozilla/fxa-auth-db-mysql.git'
-  revision node['mozilla-firefox-accounts']['auth-db-mysql']['version']
-  user node['mozilla-firefox-accounts']['user']
   notifies :create, 'template[fxa-auth-db]', :immediately
-  notifies :install, 'nodejs_npm[fxa-auth-db-mysql]', :immediately
+  notifies :install, 'nodejs_npm[fxa-auth-db-server]', :immediately
   notifies :run, 'execute[fxa-auth-db-migration]', :immediately
 end
 
@@ -58,18 +42,18 @@ template 'fxa-auth-db' do
       database: node['mozilla-firefox-accounts']['database']['database']
 
   )
-  path "#{node['mozilla-firefox-accounts']['auth-db-mysql']['path']}/config/prod.json"
+  path "#{node['mozilla-firefox-accounts']['auth-db-server']['path']}/config/prod.json"
   source 'auth-db-server.json.erb'
 end
 
-nodejs_npm 'fxa-auth-db-mysql' do
-  url node['mozilla-firefox-accounts']['auth-db-mysql']['path']
+nodejs_npm 'fxa-auth-db-server' do
+  url node['mozilla-firefox-accounts']['auth-db-server']['path']
   options ['--production']
   action :nothing
 end
 
 execute 'fxa-auth-db-migration' do
-  cwd node['mozilla-firefox-accounts']['auth-db-mysql']['path']
+  cwd node['mozilla-firefox-accounts']['auth-db-server']['path']
   command 'node bin/db_patcher.js'
   action :nothing
 end

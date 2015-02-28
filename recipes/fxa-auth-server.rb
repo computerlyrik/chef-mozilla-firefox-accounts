@@ -27,6 +27,7 @@ package 'libgmp10-dev'
 
 directory node['mozilla-firefox-accounts']['auth-server']['path'] do
   recursive true
+  user node['mozilla-firefox-accounts']['user']
 end
 
 git node['mozilla-firefox-accounts']['auth-server']['path']  do
@@ -40,6 +41,10 @@ nodejs_npm 'fxa-auth-server' do
   options ['--production']
 end
 
+template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/prod.json" do
+   source 'auth-server.json.erb'
+end
+
 template '/etc/init/fxa-auth-server.conf' do
   source 'upstart-auth-server.conf.erb'
 end
@@ -48,6 +53,3 @@ service 'fxa-auth-server' do
   action [:start, :enable]
 end 
 
-#template "#{node['mozilla-firefox-accounts']['auth-server']['path']}/config/dev.json" do
-#   source 'auth-db-server.json.erb'
-#end
